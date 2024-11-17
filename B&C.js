@@ -92,5 +92,3 @@ function playGame() {
 
    askQuestion();
 }
-
-//playGame();
