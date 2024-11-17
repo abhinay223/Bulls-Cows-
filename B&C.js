@@ -1,8 +1,3 @@
-// const readline = require('readline');
-// const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
 
 
 function generateSecretCode() {
@@ -20,13 +15,10 @@ function generateSecretCode() {
 function calculateBullsAndCows(guess, secretCode) {
     let bulls = 0;
     let cows = 0;
-     //let guessArray = guess.split('');
-    //let guessArray = guess;
-    //alert(guessArray);
+   
     
     let secretArray = secretCode.split('');
-    //let guessArray = guess1.split('');
-
+    
     // Count bulls
     var input1 = document.getElementById('guess-input');
     var input2 = input1.value;
@@ -52,16 +44,7 @@ function calculateBullsAndCows(guess, secretCode) {
 
 function playGame() {
     
-
-    //const readline = require('readline');
-    
-    
-    // const rl = readline.createInterface({
-    //    input: process.stdin,
-    //    output: process.stdout
-    // });
-
-    
+   
     const secretCode = generateSecretCode();
     
     let attempts = 0;
@@ -71,8 +54,7 @@ function playGame() {
 
    
     function askQuestion() {
-        // rl.question('Enter your guess: ', (guess) => {
-        //     guess = guess.trim();
+     
         const readline = document.getElementById('guess-input');
         var input = readline.value;
         var guess = parseFloat(input);
@@ -84,7 +66,6 @@ function playGame() {
             
             if (input.length !== 4 || isNaN(guess1) || new Set(guess1).size !== 4) {
                 console.log('Invalid guess. Please enter a 4-digit number with no repeated digits.');
-                //askQuestion();
                 return;
             }
             
@@ -99,14 +80,14 @@ function playGame() {
                 console.log(`Congratulations! You guessed the number in ${attempts} attempts.`);
                 rl.close();
             } else {
-                //askQuestion();
+             
             }
-        // });
+       
         let outBulls = bulls ;
-        document.getElementById("outbulls").innerHTML = outBulls; // Display the variable
+        document.getElementById("outbulls").innerHTML = outBulls; 
 
         let outcows = cows ;
-        document.getElementById("outcows").innerHTML = outcows; // Display the variable
+        document.getElementById("outcows").innerHTML = outcows; 
     }
 
    askQuestion();
