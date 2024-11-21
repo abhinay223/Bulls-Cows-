@@ -16,14 +16,20 @@
             <button id="guess-btn" onclick = "playGame()">Guess</button>
         </div>
 
+        <div id="new-game">
+            <!-- <input type="number" id="guess-input" placeholder="Enter your guess" maxlength="4"> -->
+            <button id="new-btn" onclick = "newGame()">Start Game</button>
+        </div>
+        <div id = reset-div>
+            <!-- <input type="number" id="guess-input" placeholder="Enter your guess" maxlength="4"> -->
+            <button id="reset-game" onclick = "newGame()">Reset Game</button>
+        </div>
+
         <div id="result-section">
             <p id="bulls-cows"></p>
         </div>
 
-        <div id="previous-guesses">
-            <h3>Previous Guesses:</h3>
-            <ul id="guess-list"></ul>
-        </div>
+       
 
         <div id="game-over" style="display: none;">
             <p>You guessed the number! Well done!</p>
