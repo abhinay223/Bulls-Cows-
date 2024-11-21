@@ -1,122 +1,47 @@
-var secretCode = '0000';
-var input1 = '';
-var x = document.getElementById("guess-section");
-x.style.display = 'none';
-var y = document.getElementById("reset-div");
-y.style.display = 'none';
-
-function generateSecretCode() {
-
-    var z = document.getElementById('new-game');
-  z.style.display = 'none';
-    let code = '';
-    while (code.length < 4) {
-        const digit = Math.floor(Math.random() * 10);
-        if (!code.includes(digit.toString())) {
-            code += digit;
-        }
-    }
-    return code;
-}
-
-
-function calculateBullsAndCows(guess, secretCode) {
-    let bulls = 0;
-    let cows = 0;
-  
-    
-    let secretArray = secretCode.split('');
-   
-
-    // Count bulls
-     input1 = document.getElementById('guess-input');
-    input1.disable = true;
-    var input2 = input1.value;
-    
-    for (let i = 0; i < 4; i++) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulls and Cows Game</title>
+    <link rel="stylesheet" href="B&C.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Bulls and Cows Game</h1>
+        <p>Guess the 4-digit number!</p>
         
-        if (input2[i] === secretArray[i]) {
-            bulls++;
-            input2[i] = secretArray[i] = null; 
-        }
-    }
+        <div id="guess-section">
+            <input type="number" id="guess-input" placeholder="Enter your guess" maxlength="4">
+            <button id="guess-btn" onclick = "playGame()">Guess</button>
+        </div>
 
-    // Count cows
-    for (let i = 0; i < 4; i++) {
-        if (input2[i] !== null && secretArray.includes(input2[i])) {
-            cows++;
-            secretArray[secretArray.indexOf(input2[i])] = null; 
-        }
-    }
+        <div id="new-game">
+            <!-- <input type="number" id="guess-input" placeholder="Enter your guess" maxlength="4"> -->
+            <button id="new-btn" onclick = "newGame()">Start Game</button>
+        </div>
+        <div id = reset-div>
+            <!-- <input type="number" id="guess-input" placeholder="Enter your guess" maxlength="4"> -->
+            <button id="reset-game" onclick = "newGame()">Reset Game</button>
+        </div>
 
-    return { bulls, cows };
-}
+        <div id="result-section">
+            <p id="bulls-cows"></p>
+        </div>
 
-function playGame() {
+       
 
-    // const secretCode = generateSecretCode();
-    
-    let attempts = 0;
-
-  
-
-   
-    function askQuestion() {
-     
-        const readline = document.getElementById('guess-input');
-        var input = readline.value;
-        var guess = parseFloat(input);
-       var guess1 = guess.toString();
-        
-
-
-
-            
-            if (input.length !== 4 || isNaN(guess1) || new Set(guess1).size !== 4) {
-                console.log('Invalid guess. Please enter a 4-digit number with no repeated digits.');
-                alert('Number is invalid, Please enter the number');
-               
-                return;
-            }
-            
-
-            attempts++;
-            const { bulls, cows } = calculateBullsAndCows(guess, secretCode);
-            console.log(`${bulls} Bulls, ${cows} Cows`);
-            
-
-           
-            if (bulls === 4) {
-                console.log(`Congratulations! You guessed the number in ${attempts} attempts.`);
-                rl.close();
-            } else {
-               
-            }
-    
-        let outBulls = bulls ;
-        document.getElementById("outbulls").innerHTML = outBulls; 
-
-        let outcows = cows ;
-        document.getElementById("outcows").innerHTML = outcows; 
-    }
-
-   askQuestion();
-}
-
-function newGame(){
-    console.log("Welcome to Bulls and Cows!");
-    console.log("Try to guess the 4-digit number with no repeating digits.");
-    secretCode = generateSecretCode();
-    x.style = 'block';
-  
-  y.style = 'block';
-    console.log('secret code'+secretCode);
-
-    document.getElementById("outbulls").innerHTML = 0; 
-    document.getElementById("outcows").innerHTML = 0; 
-
+        <div id="game-over" style="display: none;">
+            <p>You guessed the number! Well done!</p>
+            <button id="restart-btn">Restart Game</button>
+        </div>
+        <div><h3>Bulls</h3><h3 id="outbulls"></h3><h3 id="outbulls">
+            <h3>Cows</h3><h3 id="outcows"></h3 ></div>
+       
+    </div>
     
 
-}
-
-
+    <script src="./B&C.js"></script>
+    
+</body>
+</html>
